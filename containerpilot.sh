@@ -30,29 +30,36 @@ onStart() {
 health() {
     logDebug "health"
 
-    /usr/bin/curl -o /dev/null --fail -s http://127.0.0.1:8000/
-    if [[ $? -ne 0 && $? -ne 22 ]]; then
-        echo "Service monitor endpoint failed"
-        exit 1
-    fi
-
-    /usr/bin/curl -o /dev/null --fail -s https://localhost:8443/ --insecure
-    if [[ $? -ne 0 && $? -ne 22 ]]; then
-        echo "Service monitor endpoint failed"
-        exit 1
-    fi
-
-    /usr/bin/curl -o /dev/null --fail -s http://localhost:8001/status
-    if [[ $? -ne 0 ]]; then
-        echo "Service monitor endpoint failed"
-        exit 1
-    fi
-
-    /usr/bin/curl -o /dev/null --fail -s https://localhost:8444/ --insecure
-    if [[ $? -ne 0 ]]; then
-        echo "Service monitor endpoint failed"
-        exit 1
-    fi
+    case $1 in
+        8000)
+            /usr/bin/curl -o /dev/null --fail -s http://127.0.0.1:8000/
+            if [[ $? -ne 0 && $? -ne 22 ]]; then
+                echo "Service monitor endpoint :8000 failed"
+                exit 1
+            fi
+            ;;
+        8443)
+            /usr/bin/curl -o /dev/null --fail -s https://localhost:8443/ --insecure
+            if [[ $? -ne 0 && $? -ne 22 ]]; then
+                echo "Service monitor endpoint :8443 failed"
+                exit 1
+            fi
+            ;;
+        8001)
+            /usr/bin/curl -o /dev/null --fail -s http://localhost:8001/status
+            if [[ $? -ne 0 ]]; then
+                echo "Service monitor endpoint :8001 failed"
+                exit 1
+            fi
+            ;;
+        8444)
+            /usr/bin/curl -o /dev/null --fail -s https://localhost:8444/ --insecure
+            if [[ $? -ne 0 ]]; then
+                echo "Service monitor endpoint :8444 failed"
+                exit 1
+            fi
+            ;;
+    esac
 }
 
 logDebug() {
