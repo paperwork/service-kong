@@ -17,7 +17,7 @@
         '/usr/local/openresty/nginx/sbin/nginx', '-c', '/usr/local/kong/nginx.conf', '-p', '/usr/local/kong/'
       ],
       health: {
-        exec: '/usr/local/bin/containerpilot.sh health',
+        exec: '/usr/local/bin/containerpilot.sh health 8000',
         interval: 10,
         ttl: 25
       },
@@ -32,10 +32,10 @@
       port: 8443,
       tags: ['kong'],
       exec: [
-        '/bin/sh'
+        '/usr/local/bin/dummy.sh'
       ],
       health: {
-        exec: '/usr/local/bin/containerpilot.sh health',
+        exec: '/usr/local/bin/containerpilot.sh health 8443',
         interval: 10,
         ttl: 25
       },
@@ -50,10 +50,10 @@
       port: 8001,
       tags: ['kong'],
       exec: [
-        '/bin/sh'
+        '/usr/local/bin/dummy.sh'
       ],
       health: {
-        exec: '/usr/local/bin/containerpilot.sh health',
+        exec: '/usr/local/bin/containerpilot.sh health 8001',
         interval: 10,
         ttl: 25
       },
@@ -68,10 +68,10 @@
       port: 8444,
       tags: ['kong'],
       exec: [
-        '/bin/sh'
+        '/usr/local/bin/dummy.sh'
       ],
       health: {
-        exec: '/usr/local/bin/containerpilot.sh health',
+        exec: '/usr/local/bin/containerpilot.sh health 8444',
         interval: 10,
         ttl: 25
       },
