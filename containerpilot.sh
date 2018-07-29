@@ -15,8 +15,8 @@ consul() {
 onStart() {
     logDebug "onStart"
 
-    until psql -h "$KONG_PG_HOST" -U "postgres" -c '\q'; do
-      >&2 echo "$KONG_PG_HOST is unavailable - sleeping"
+    until nc "$KONG_CASSANDRA_CONTACT_POINTS" 9042; do
+      >&2 echo "$KONG_CASSANDRA_CONTACT_POINTS is unavailable - sleeping"
       sleep 1
     done
 
