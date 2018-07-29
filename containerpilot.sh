@@ -15,7 +15,7 @@ consul() {
 onStart() {
     logDebug "onStart"
 
-    until nc -q "$KONG_CASSANDRA_CONTACT_POINTS" 9042; do
+    until nc -q 5 "$KONG_CASSANDRA_CONTACT_POINTS" 9042; do
       >&2 echo "$KONG_CASSANDRA_CONTACT_POINTS is unavailable - sleeping"
       sleep 1
     done
