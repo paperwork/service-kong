@@ -29,7 +29,7 @@ RUN apk add --no-cache --virtual .build-deps wget tar ca-certificates \
 COPY dummy.sh /usr/local/bin/
 RUN chmod 500 /usr/local/bin/dummy.sh
 
-EXPOSE 8000 8443 8001 7946
+EXPOSE 8000 8001 8443 8444 7946
 
 ENTRYPOINT []
 CMD ["containerpilot"]
